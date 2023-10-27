@@ -4,7 +4,7 @@ function renderProductList(productArr) {
   var contentHTML = "";
   for (var i = 0; i < productArr.length; i++) {
     var product = productArr[i];
-    var trString = `<tr>
+    var trString = `<tr class='product-row' data-type='${product.type}'>
         <td>${product.id}</td>
         <td>${product.name}</td>
         <td>${product.price}</td>
@@ -157,4 +157,18 @@ function decreaseQuantity(index) {
     cart.splice(index, 1); // Xóa sản phẩm nếu số lượng bằng 0
   }
   updateCart();
+}
+// lọc danh sách Samsung và Iphone
+function filterProducts() {
+  var selectedType = document.getElementById("filter").value;
+  var productRows = document.getElementsByClassName("product-row");
+
+  for (var i = 0; i < productRows.length; i++) {
+    var productType = productRows[i].getAttribute("data-type");
+    if (selectedType === "all" || selectedType === productType) {
+      productRows[i].style.display = "table-row";
+    } else {
+      productRows[i].style.display = "none";
+    }
+  }
 }
