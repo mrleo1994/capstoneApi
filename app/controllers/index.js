@@ -34,7 +34,7 @@ function fetchFoodList() {
   })
     .then(function (res) {
       turnOffLoading();
-      renderProductList(res.data.reverse());
+      renderProductList(res.data);
     })
     .catch(function (err) {
       turnOffLoading();
